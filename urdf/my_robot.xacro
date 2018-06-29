@@ -1,8 +1,7 @@
 <?xml version='1.0'?>
-<!-- csosa_bot -->
 
 <robot name="udacity_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find udacity_bot)/urdf/my_bot.gazebo"/>
+  <xacro:include filename="$(find udacity_bot)/urdf/my_robot.gazebo"/>
   <link name="robot_footprint"></link>
 
   <joint name="robot_footprint_joint" type="fixed">
@@ -17,7 +16,7 @@
     <pose>0 0 0.1 0 0 0</pose>
 
     <inertial>
-      <mass value="10.0"/>
+      <mass value="20.0"/>
       <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
       <inertia
           ixx="0.05" ixy="0" ixz="0"
@@ -38,8 +37,8 @@
       <geometry>
         <cylinder radius="0.2" length="0.1"/>
       </geometry>
-      <material name="black">
-        <color rgba="0 0 0 1"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
       </material>
     </visual>
 
@@ -91,11 +90,10 @@
         <sphere radius="0.0499"/>
       </geometry>
     </visual>
-
   </link>
 
-  <!-- Left Wheel Link -->
-  
+   <!-- Left Wheel Link -->
+
   <link name="left_wheel">
 
     <inertial>
@@ -109,16 +107,16 @@
     </inertial>
     <visual>
       <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <cylinder length="0.1" radius="0.05"/>
       </geometry>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
-      <material name="white">
-        <color rgba="1 1 1 1"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <cylinder length="0.1" radius="0.05"/>
       </geometry>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
     </collision>
@@ -139,16 +137,16 @@
     </inertial>
     <visual>
       <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <cylinder length="0.05" radius="0.05"/>
       </geometry>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
-      <material name="white">
-        <color rgba="1 1 1 1"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <cylinder length="0.05" radius="0.05"/>
       </geometry>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
     </collision>
@@ -214,31 +212,31 @@
   <!-- Joints -->
 
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="0 0.25 0" rpy="0 0 0"/>
+    <origin xyz="0 0.1 -0.05" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
-    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <axis xyz="0 0.05 -0.05" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="0 -0.25 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.1 -0.05" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
-    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <axis xyz="0 -0.05 -0.05" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
   <joint type="fixed" name="camera_joint">
-    <origin xyz="0.25 0 0" rpy="0 0 0"/>
+    <origin xyz="0.2 0 0" rpy="0 0 0"/>
     <child link="camera"/>
     <parent link="chassis"/>
   </joint>
 
   <joint type="fixed" name="hokuyo_joint">
-    <origin xyz="0.0 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0.05 0 0.05" rpy="0 0 0"/>
     <child link="hokuyo"/>
     <parent link="chassis"/>
   </joint>
