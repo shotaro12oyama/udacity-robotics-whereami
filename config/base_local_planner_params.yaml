@@ -16,4 +16,4 @@ TrajectoryPlannerROS:
   acc_lim_x: 2.0
   acc_lim_y: 5.0
 
-  controller_frequency: 15.0
+  controller_frequency: 20.0
